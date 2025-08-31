@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/frontend.js"></script>
+
+    <link rel="stylesheet" href="../assets/script.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.jpeg">
+
+    <title>PulseFit Gym Management System</title>
+</head>
+
+<body>
+
+
+<header class="header">
+    <h1> PulseFit Gym</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Homepage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../Trainers/index.html">Trainers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../Classes/index.html">Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link logout-link text-white" href="javascript:void(0);" onclick="showLogoutModal()"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Add Member</span>
+    <button class="btn btn-primary btn-sm" onclick="showForm('add')">Add</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>View Member</span>
+    <button class="btn btn-success btn-sm" onclick="showMembers()">View</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Update Member</span>
+    <button class="btn btn-warning btn-sm" onclick="showForm('update')">Update</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Delete Member</span>
+    <button class="btn btn-danger btn-sm" onclick="showForm('delete')">Delete</button>
+</section>
+
+
+<div id="memberForms">
+
+    <!-- Add member form -->
+    <form id="addForm" class="crud-form d-none" onsubmit="submitAddMember(event)">
+        <input type="text" placeholder="First Name" id="addFirstName" required>
+        <input type="text" placeholder="Last Name" id="addLastName" required>
+        <input type="date" id="addDateJoined" required>
+
+        <select id="addMembershipType" required>
+            <option value="">Select Membership</option>
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
+        </select>
+
+        <input type="text" placeholder="Bank Account Number" id="addBankAcc" required min="1">
+        <button type="submit" class="btn btn-primary btn-sm mt-2">Add Member</button>
+        <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideForms()">Cancel</button>
+    </form>
+
+    <!-- view members table -->
+    <div id="viewForm" class="crud-form d-none">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Joined</th>
+                    <th>Membership Type</th>
+                    <th>Bank Account</th>
+                </tr>
+            </thead>
+            <tbody id="memberTableBody">
+              
+            </tbody>
+        </table>
+        <button class="btn btn-secondary btn-sm" onclick="hideForms()">Close</button>
+    </div>
+
+    <!-- update member form -->
+    <form id="updateForm" class="crud-form d-none" onsubmit="submitUpdateMember(event)">
+        <input type="number" placeholder="Member ID" id="updateID" required min="1">
+        <input type="text" placeholder="First Name" id="updateFirstName" required>
+        <input type="text" placeholder="Last Name" id="updateLastName" required>
+        <input type="date" id="updateDateJoined" required>
+
+        <select id="updateMembershipType" required>
+            <option value="">Select Membership</option>
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
+        </select>
+
+        <input type="text" placeholder="Bank Account Number" id="updateBankAcc" required min="1">
+        <button type="submit" class="btn btn-warning btn-sm mt-2">Update Member</button>
+        <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideForms()">Cancel</button>
+    </form>
+
+    <!-- Delete member form -->
+    <form id="deleteForm" class="crud-form d-none" onsubmit="submitDeleteMember(event)">
+        <input type="number" placeholder="Member ID" id="deleteID" required>
+        <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Member</button>
+        <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideForms()">Cancel</button>
+    </form>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

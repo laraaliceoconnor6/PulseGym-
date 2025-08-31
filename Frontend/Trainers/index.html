@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/script.css">
+   <link rel="icon" type="image/png" href="../assets/favicon.jpeg">
+    <title>PulseFit Gym Management System</title>
+</head>
+
+<body>
+
+
+<header class="header">
+    <h1> PulseFit Gym</h1>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+          
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Homepage</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../Members/index.html">Members</a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Trainers</a>
+                    </li>
+
+                     <li class="nav-item">
+                                <a class="nav-link text-white" href="../Classes/index.html">Classes</a>
+                     </li>
+
+                    
+                    
+
+<!-- ignore -->
+<li class="nav-item">
+    <a class="nav-link logout-link text-white" href="javascript:void(0);" onclick="showLogoutModal()"></a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Add Trainer</span>
+    <button class="btn btn-primary btn-sm" onclick="showTrainerForm('add')">Add</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>View Trainers</span>
+    <button class="btn btn-success btn-sm" onclick="showTrainerForm('view')">View</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Update Trainer</span>
+    <button class="btn btn-warning btn-sm" onclick="showTrainerForm('update')">Update</button>
+</section>
+
+<section class="crud-section d-flex align-items-center justify-content-between mb-3">
+    <span>Delete Trainer</span>
+    <button class="btn btn-danger btn-sm" onclick="showTrainerForm('delete')">Delete</button>
+</section>
+
+<div id="trainerForms">
+
+
+  <!-- Add trainer form -->
+ <form id="addTrainerForm" class="crud-form d-none" onsubmit="submitAddTrainer(event)">
+    <input type="text" placeholder="First Name" id="addTrainerFirstName" required>
+    <input type="text" placeholder="Last Name" id="addTrainerLastName" required>
+    <input type="date" id="addTrainerDateJoined" required>
+
+    <!--  Dropdown -->
+    <select id="addTrainerSpeciality" required>
+        <option value="">Select Speciality</option>
+        <option value="Yoga">Yoga</option>
+        <option value="HIIT">HIIT</option>
+        <option value="Pilates">Pilates</option>
+        <option value="Spin">Spin</option>
+        <option value="Powerlifting">Powerlifting</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary btn-sm mt-2">Add Trainer</button>
+    <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideTrainerForms()">Cancel</button>
+</form>
+
+  <!-- View trainers table -->
+  <div id="viewTrainerForm" class="crud-form d-none">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Date Joined</th>
+                  <th>Speciality</th>
+              </tr>
+          </thead>
+          <tbody id="trainerTableBody">
+          </tbody>
+      </table>
+      <button class="btn btn-secondary btn-sm" onclick="hideTrainerForms()">Close</button>
+  </div>
+
+
+  <!-- Update trainer form -->
+<form id="updateTrainerForm" class="crud-form d-none" onsubmit="submitUpdateTrainer(event)">
+    <input type="number" placeholder="Trainer ID" id="updateTrainerID" required>
+    <input type="text" placeholder="First Name" id="updateTrainerFirstName" required>
+    <input type="text" placeholder="Last Name" id="updateTrainerLastName" required>
+    <input type="date" id="updateTrainerDateJoined" required>
+
+    <!-- dropdown -->
+    <select id="updateTrainerSpeciality" required>
+        <option value="">Select Speciality</option>
+        <option value="Yoga">Yoga</option>
+        <option value="HIIT">HIIT</option>
+        <option value="Pilates">Pilates</option>
+        <option value="Spin">Spin</option>
+        <option value="Powerlifting">Powerlifting</option>
+    </select>
+
+    <button type="submit" class="btn btn-warning btn-sm mt-2">Update Trainer</button>
+    <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideTrainerForms()">Cancel</button>
+</form>
+
+  <!-- delete rtrainer form -->
+  <form id="deleteTrainerForm" class="crud-form d-none" onsubmit="submitDeleteTrainer(event)">
+      <input type="number" placeholder="Trainer ID" id="deleteTrainerID" required>
+      <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Trainer</button>
+      <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="hideTrainerForms()">Cancel</button>
+  </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/frontend.js"></script>
+</body>
+
+</html>
+
+
